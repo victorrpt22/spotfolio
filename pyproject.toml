@@ -1,0 +1,9 @@
+[project]
+name = "spotfolio"
+version = "0.1.0"
+description = "A Python framework to create personal blogs and portfolios easily."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.0",
+]
