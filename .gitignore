@@ -3,12 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 spotfolio/__pycache__/
+.mypy_cache
 # Virtual environment
 venv/
 .env/
-
+.venv
 # Installed dependencies
 *.egg-info/
+*.egg-info
 dist/
 build/
 
