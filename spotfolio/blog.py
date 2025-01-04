@@ -1,13 +1,22 @@
 from typing import List, Dict, Any
 import logging
-
+from flask import Flask
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
 class BlogModule:
     def __init__(self):
-        self.posts: List[Dict[str, Any]] = []
+        self.posts = []
+
+    def register_routes(self, app: Flask):
+        @app.route('/blog', methods=['GET'])
+        def list_posts():  # type: ignore
+            return self.list_posts()
+
+        @app.route('/blog/<int:post_id>', methods=['GET'])
+        def view_post(post_id: int):
+            return self.view_post(post_id)
 
     def add_post(self, title: str, content: str):
         post_id = len(self.posts) + 1

@@ -25,4 +25,6 @@ spotfolio/
 ### To run an example first export the module
 ```shell
 export PYTHONPATH=$PYTHONPATH:./portfolio
+# Then run
+uv run examples/basic_blog/app.py
 ```
