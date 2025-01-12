@@ -15,7 +15,7 @@ class Post:
         self.content = content
 
     def to_dict(self) -> Dict[str, Any]:
-        return {'id': self.id, 'title': self.title, 'content': self.content}
+        return {"id": self.id, "title": self.title, "content": self.content}
 
 
 class BlogModule(BaseModule):
@@ -25,20 +25,33 @@ class BlogModule(BaseModule):
     def initialize(self):
         print("Initializing BlogModule")
 
+    def get_section_metadata(self) -> Dict[str, Any]:
+        return {
+            "name": "Blog",
+            "description": "A simple blog module",
+            "icon": "fa fa-newspaper",
+            'route': '/blog'
+        }
+
     def register_routes(self, app: Any):
-        @app.route('/blog', methods=['GET'])
+        @ app.route("/blog", methods=["GET"])
         def list_posts():  # type: ignore
             posts = self.list_posts()
-            return render_template('blog/list.html', posts=posts)
+            return render_template("blog/list.html", posts=posts)
 
-        @app.route('/blog/<string:post_id>', methods=['GET'])
+        @ app.route("/blog/<string:post_id>", methods=["GET"])
         def view_post(post_id: str):  # type: ignore
             post = self.view_post(post_id)
             if isinstance(post, tuple):
                 return post
-            return render_template('blog/view.html', post=post)
+            return render_template("blog/view.html", post=post)
 
-    def add_post(self, title: str, content: str, id: str | None = None,):
+    def add_post(
+        self,
+        title: str,
+        content: str,
+        id: str | None = None,
+    ):
         post_id = id if id else str(uuid4())
         self.posts.append(Post(title, content, post_id))
 
@@ -46,8 +59,7 @@ class BlogModule(BaseModule):
         return self.posts
 
     def view_post(self, post_id: str):
-        post = next(
-            (post for post in self.posts if post.id == post_id), None)
+        post = next((post for post in self.posts if post.id == post_id), None)
         if post is None:
             logger.error(f"Post with id {post_id} not found")
             return "Post not found", 404

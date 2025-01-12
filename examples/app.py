@@ -1,6 +1,6 @@
 from spotfolio import SpotFolio, BlogModule
 
-app = SpotFolio(title='Juan Perez', description='My personal portfolio')
+app = SpotFolio(title='Juan Perez', description='My personal site')
 
 # Register the blog module
 app.register_module('blog', BlogModule())

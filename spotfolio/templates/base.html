@@ -9,6 +9,14 @@
     <header>
         <h1>{{ title }}</h1>
         <p>{{ description }}</p>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                {% for section in sections %}
+                    <li><a href="{{ section.route }}" title="{{ section.description }}" >{{ section.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
     </header>
     <main>
         {% block content %}

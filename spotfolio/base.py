@@ -25,3 +25,14 @@ class BaseModule(ABC):
         """
         print(f"{self.__class__.__name__} has no specific initialization logic.")
         pass
+
+    def get_section_metadata(self):
+        """
+        Returns metadata about the module
+        """
+        return {
+            "name": self.name,
+            "description": "No description available",
+            "icon": "fa fa-cube",
+            'route': f'/{self.name.lower()}'
+        }
