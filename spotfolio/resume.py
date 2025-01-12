@@ -1,9 +1,8 @@
 from typing import List, Dict
-from pydantic import BaseModel
 from flask import Flask
 
 
-class ResumeModule(BaseModel):
+class ResumeModule:
     name: str
     email: str
     phone: str

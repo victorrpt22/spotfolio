@@ -1,10 +1,14 @@
-from spotfolio import SpotFolio
+from spotfolio import SpotFolio, BlogModule
 
 app = SpotFolio(title='Juan Perez', description='My personal portfolio')
 
-# Add a post to the blog
-app.blog.add_post('My first post', 'This is my first post on my blog')
-app.blog.add_post('My second post', 'This is my second post on my blog')
+# Register the blog module
+app.register_module('blog', BlogModule())
+
+# get the blog module
+blog: BlogModule = app.get_module('blog')  # type: ignore
+blog.add_post('Hello World', 'This is my first post')
+blog.add_post('Second Post', 'This is my second post')
 
 # Run the app
 if __name__ == '__main__':
